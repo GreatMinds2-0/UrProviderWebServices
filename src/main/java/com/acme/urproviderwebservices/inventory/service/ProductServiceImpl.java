@@ -5,6 +5,7 @@ import com.acme.urproviderwebservices.inventory.domain.persistence.ProductReposi
 import com.acme.urproviderwebservices.inventory.domain.service.ProductService;
 import com.acme.urproviderwebservices.shared.exception.ResourceNotFoundException;
 import com.acme.urproviderwebservices.shared.exception.ResourceValidationException;
+import com.acme.urproviderwebservices.users.store.domain.model.entity.Store;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -67,5 +68,19 @@ public class ProductServiceImpl implements ProductService {
                     productRepository.delete(product);
                     return ResponseEntity.ok().build(); })
                 .orElseThrow(() -> new ResourceNotFoundException(ENTITY, productId));
+    }
+
+    @Override
+    public Product create(Product product){
+        Set<ConstraintViolation<Product>> violations = validator.validate(product);
+        if (!violations.isEmpty())
+            throw new ResourceValidationException(ENTITY, violations);
+        // Email Uniqueness validation
+        Store storeWithEmail = storeRepository.findByEmail(store.getEmail());
+        if (storeWithEmail != null)
+            throw new ResourceValidationException(ENTITY,
+                    "A store with the same email already exist.");
+
+        return storeRepository.save(store);
     }
 }

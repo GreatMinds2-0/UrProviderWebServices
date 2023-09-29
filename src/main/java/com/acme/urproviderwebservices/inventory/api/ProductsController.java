@@ -2,7 +2,11 @@ package com.acme.urproviderwebservices.inventory.api;
 
 import com.acme.urproviderwebservices.inventory.domain.service.ProductService;
 import com.acme.urproviderwebservices.inventory.mapping.ProductMapper;
+import com.acme.urproviderwebservices.inventory.resource.CreateProductResource;
 import com.acme.urproviderwebservices.inventory.resource.ProductResource;
+import com.acme.urproviderwebservices.inventory.resource.UpdateProductResource;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,11 +27,6 @@ public class ProductsController {
     public List<ProductResource> getAllProducts(){
         return mapper.modelListPage(productService.getAll());
     }
-    @GetMapping("{productId}")
-    public ProductResource getProductById(@PathVariable Long productId) {
-        return mapper.toResource(productService.getById(productId));
-    }
-
     @GetMapping("{productId}")
     public ProductResource getProductById(@PathVariable Long productId) {
         return mapper.toResource(productService.getById(productId));
