@@ -27,11 +27,8 @@ public class ProductsController {
     public List<ProductResource> getAllProducts(){
         return mapper.modelListPage(productService.getAll());
     }
-    @GetMapping("{productId}")
-    public ProductResource getProductById(@PathVariable Long productId) {
-        return mapper.toResource(productService.getById(productId));
-    }
 
+    // no es necesaria este endpoint
     @PostMapping
     public ResponseEntity<ProductResource> createProduct(@RequestBody CreateProductResource resource) {
         return new ResponseEntity<>(mapper.toResource(productService.create(mapper.toModel(resource))), HttpStatus.CREATED);

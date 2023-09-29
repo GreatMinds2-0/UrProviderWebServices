@@ -72,15 +72,15 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product create(Product product){
-        Set<ConstraintViolation<Product>> violations = validator.validate(product);
+        /*Set<ConstraintViolation<Product>> violations = validator.validate(product);
         if (!violations.isEmpty())
             throw new ResourceValidationException(ENTITY, violations);
         // Email Uniqueness validation
         Store storeWithEmail = storeRepository.findByEmail(store.getEmail());
         if (storeWithEmail != null)
             throw new ResourceValidationException(ENTITY,
-                    "A store with the same email already exist.");
+                    "A store with the same email already exist.");*/
 
-        return storeRepository.save(store);
+        return productRepository.save(product);
     }
 }
