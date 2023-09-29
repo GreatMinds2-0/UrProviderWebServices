@@ -37,9 +37,8 @@ public class UrProviderWebServicesApplication {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://hesitant-turn-production.up.railway.app/")
-                        .allowedMethods("GET", "POST", "PUT")
-                        .allowedHeaders("Access-Control-Allow-Origin", "Content-Type", "Authorization");
+                        .allowedOrigins("*")
+                        .allowedMethods("*");
             }
         };
     }
