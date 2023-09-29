@@ -66,15 +66,15 @@ public class StoreServiceImpl implements StoreService {
             throw new ResourceValidationException(ENTITY,
                     "A store with the same email already exists.");
         return storeRepository.findById(storeId).map(existingStore ->
-                storeRepository.save(
-                        existingStore.withStoreName(request.getStoreName())
-                                .withName(request.getName())
-                                .withLastName(request.getLastName())
-                                .withEmail(request.getEmail())
-                                .withPassword(request.getPassword())
-                                .withPhone(request.getPhone())
-                                .withAddress(request.getAddress())
-                                .withImage(request.getImage())))
+                        storeRepository.save(
+                                existingStore.withStoreName(request.getStoreName())
+                                        .withName(request.getName())
+                                        .withLastName(request.getLastName())
+                                        .withEmail(request.getEmail())
+                                        .withPassword(request.getPassword())
+                                        .withPhone(request.getPhone())
+                                        .withAddress(request.getAddress())
+                                        .withImage(request.getImage())))
                 .orElseThrow(() -> new ResourceNotFoundException(ENTITY, storeId));
     }
 
@@ -90,21 +90,21 @@ public class StoreServiceImpl implements StoreService {
     @Override
     public Store addSalesOrderToStore(Long storeId, SalesOrder salesOrder) {
         return storeRepository.findById(storeId).map(store ->
-                storeRepository.save(store.addSalesOrder(salesOrder)))
+                        storeRepository.save(store.addSalesOrder(salesOrder)))
                 .orElseThrow(() -> new ResourceNotFoundException(ENTITY, storeId));
     }
 
     @Override
     public Store deleteSalesOrderToStore(Long storeId, Long salesOrderId) {
         return storeRepository.findById(storeId).map(store ->
-                storeRepository.save(store.deleteSalesOrder(salesOrderId)))
+                        storeRepository.save(store.deleteSalesOrder(salesOrderId)))
                 .orElseThrow(() -> new ResourceNotFoundException(ENTITY, storeId));
     }
 
     @Override
     public Store updateSalesOrderToStore(Long storeId, Long salesOrderId, SalesOrder salesOrder) {
         return storeRepository.findById(storeId).map(store ->
-                storeRepository.save(store.updateSalesOrder(salesOrder, salesOrderId)))
+                        storeRepository.save(store.updateSalesOrder(salesOrder, salesOrderId)))
                 .orElseThrow(() -> new ResourceNotFoundException(ENTITY, storeId));
     }
 }
