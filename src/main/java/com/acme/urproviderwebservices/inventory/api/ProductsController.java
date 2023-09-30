@@ -29,10 +29,7 @@ public class ProductsController {
     }
 
     // no es necesaria este endpoint
-    @PostMapping
-    public ResponseEntity<ProductResource> createProduct(@RequestBody CreateProductResource resource) {
-        return new ResponseEntity<>(mapper.toResource(productService.create(mapper.toModel(resource))), HttpStatus.CREATED);
-    }
+    
 
     @PutMapping("{productId}")
     public ProductResource updateProduct(@PathVariable Long productId,
