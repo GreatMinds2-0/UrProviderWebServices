@@ -34,5 +34,11 @@ public class ProductsController {
         return new ResponseEntity<>(mapper.toResource(productService.create(mapper.toModel(resource))), HttpStatus.CREATED);
     }
 
+    @PutMapping("{productId}")
+    public ProductResource updateProduct(@PathVariable Long productId,
+                                         @RequestBody UpdateProductResource resource) {
+        return mapper.toResource(productService.update(productId, mapper.toModel(resource)));
+    }
+
     
 }
