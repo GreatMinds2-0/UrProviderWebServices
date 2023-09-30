@@ -46,4 +46,8 @@ public class StoresController {
     public ResponseEntity<?> deleteStore(@PathVariable Long storeId){
         return storeService.delete(storeId);
     }
+    @GetMapping("/{storeId}/sales-count")
+    public int getSalesCount(@PathVariable Long storeId) {
+        return storeService.getSalesCountByStoreId(storeId);
+    }
 }

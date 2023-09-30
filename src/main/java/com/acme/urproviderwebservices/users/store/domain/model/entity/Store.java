@@ -1,3 +1,4 @@
+
 package com.acme.urproviderwebservices.users.store.domain.model.entity;
 
 import com.acme.urproviderwebservices.sales.domain.model.entity.SalesOrder;
@@ -91,4 +92,12 @@ public class Store extends BaseModel {
 
         return this;
     }
+    public List<SalesOrder> getSalesOrders() {
+            return salesOrders;
+    }
+
+    public void setSalesOrders(List<SalesOrder> salesOrders) {
+            this.salesOrders = salesOrders;
+    }
+
 }
