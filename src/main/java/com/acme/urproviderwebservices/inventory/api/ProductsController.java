@@ -23,5 +23,11 @@ public class ProductsController {
         this.mapper = mapper;
     }
 
+    @GetMapping
+    public List<ProductResource> getAllProducts(){
+        return mapper.modelListPage(productService.getAll());
+    }
+
+    // no es necesaria este endpoint
     
 }
