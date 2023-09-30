@@ -40,5 +40,8 @@ public class ProductsController {
         return mapper.toResource(productService.update(productId, mapper.toModel(resource)));
     }
 
-    
+    @GetMapping("{productId}")
+    public ResponseEntity<?> deleteStudent(@PathVariable Long productId) {
+        return productService.delete(productId);
+    }
 }
